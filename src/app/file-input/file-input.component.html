@@ -1,3 +1,2 @@
-<p>
-  file-input works!
-</p>
+<input #fileInput type="file" (change)="onChange($event.target.files[0])" [accept]="accept || ''" />
+<a (click)="browse()">{{title}}</a>

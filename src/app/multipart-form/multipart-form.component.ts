@@ -7,9 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MultipartFormComponent implements OnInit {
 
+  public name: string;
+  public date: string;
+  public avatar: File;
+  public cv: File;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  onAvatarChange(file: File) {
+    this.avatar = file;
+  }
+
+  onCVChange(file: File) {
+    this.cv = file;
+  }
+
+  upload() {
+    //this.httpClient.post
+  }
 }

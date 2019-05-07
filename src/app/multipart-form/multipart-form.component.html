@@ -3,22 +3,22 @@
 
   <div class="form-group">
     <label>Name:</label>
-    <input type="text" [(ngModel)]="name" />
+    <input type="text" [(ngModel)]="userData.name" />
   </div>
 
   <div class="form-group">
     <label>Date of Birth:</label>
-    <input type="date" [(ngModel)]="date" />
+    <input type="date" [(ngModel)]="userData.date" />
   </div>
 
   <div class="form-group">
     <label>Avatar:</label>
-    <app-file-input [file]="avatar" (onFileChange)="onAvatarChange($event)"></app-file-input>
+    <app-file-input [file]="userData.avatar" (onFileChange)="onAvatarChange($event)"></app-file-input>
   </div>
 
   <div class="form-group">
     <label>CV:</label>
-    <app-file-input [file]="cv" (onFileChange)="onCVChange($event)"></app-file-input>
+    <app-file-input [file]="userData.cv" (onFileChange)="onCVChange($event)"></app-file-input>
   </div>
 
   <div class="form-group">

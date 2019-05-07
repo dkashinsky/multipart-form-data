@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { toFormData, UserModel } from './multipart-form.data';
 
 @Component({
   selector: 'app-multipart-form',
@@ -7,25 +9,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MultipartFormComponent implements OnInit {
 
-  public name: string;
-  public date: string;
-  public avatar: File;
-  public cv: File;
+  public userData: UserModel;
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
+    this.userData = {
+      name: null,
+      date: null,
+      avatar: null,
+      cv: null
+    };
   }
 
   onAvatarChange(file: File) {
-    this.avatar = file;
+    this.userData.avatar = file;
   }
 
   onCVChange(file: File) {
-    this.cv = file;
+    this.userData.cv = file;
   }
 
   upload() {
-    //this.httpClient.post
+    const uploadUrl = '';
+    this.httpClient.post<any>(uploadUrl, toFormData(this.userData)).subscribe(result => {
+      alert('success!');
+    });
   }
 }

@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using WebApi.Utils;
 
 namespace WebApi
 {
@@ -10,6 +11,8 @@ namespace WebApi
     public static void Register(HttpConfiguration config)
     {
       // Web API configuration and services
+      config.EnableCors();
+      config.Formatters.Add(new MultipartFormDataMediaTypeFormatter());
 
       // Web API routes
       config.MapHttpAttributeRoutes();

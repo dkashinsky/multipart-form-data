@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
+using WebApi.Data;
 
 namespace WebApi.Controllers
 {
@@ -16,7 +18,8 @@ namespace WebApi.Controllers
     }
 
     // POST api/upload
-    public IHttpActionResult Post([FromBody]string value)
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    public IHttpActionResult Post(UserModel userModel)
     {
       return Ok(new { test = 123 });
     }

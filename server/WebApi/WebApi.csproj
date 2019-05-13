@@ -134,6 +134,8 @@
     <Compile Include="Utils\IFormDataParser.cs" />
     <Compile Include="Utils\MultipartFormDataAttribute.cs" />
     <Compile Include="Utils\MultipartFormDataMediaTypeFormatter.cs" />
+    <Compile Include="Utils\Parsers\DateTimeFormDataParser.cs" />
+    <Compile Include="Utils\Parsers\StringFormDataParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -147,7 +149,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Utils\Parsers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

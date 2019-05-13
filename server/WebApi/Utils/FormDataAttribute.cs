@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebApi.Utils.Parsers;
 
 namespace WebApi.Utils
 {
@@ -13,7 +14,10 @@ namespace WebApi.Utils
 
     private static readonly Dictionary<Type, IFormDataParser> KnownParsers = new Dictionary<Type, IFormDataParser>();
     private static readonly Dictionary<Type, IFormDataParser> KnownTypes = new Dictionary<Type, IFormDataParser>()
-    { };
+    {
+      { typeof(string), new StringFormDataParser() },
+      { typeof(DateTime?), new DateTimeFormDataParser() }
+    };
 
     public IFormDataParser GetParser(Type propertyType)
     {

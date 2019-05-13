@@ -11,12 +11,12 @@ namespace WebApi.Data
     public string Name { get; set; }
 
     [FormData(Name = "date")]
-    public DateTime DateOfBirth { get; set; }
+    public DateTime? DateOfBirth { get; set; }
 
-    [FormData(Name = "avatarFile")]
+    //[FormData(Name = "avatarFile")]
     public HttpPostedFile Avatar { get; set; }
 
-    [FormData(Name = "cvFile")]
+    //[FormData(Name = "cvFile")]
     public HttpPostedFile CV { get; set; }
   }
 }

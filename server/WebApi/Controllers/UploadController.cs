@@ -21,7 +21,7 @@ namespace WebApi.Controllers
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public IHttpActionResult Post(UserModel userModel)
     {
-      return Ok(new { test = 123 });
+      return Ok(userModel);
     }
   }
 }

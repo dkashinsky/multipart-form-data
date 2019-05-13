@@ -1,6 +1,7 @@
 using System;
 using System.Web;
 using WebApi.Utils;
+using WebApi.Utils.Parsers;
 
 namespace WebApi.Data
 {
@@ -13,10 +14,16 @@ namespace WebApi.Data
     [FormData(Name = "date")]
     public DateTime? DateOfBirth { get; set; }
 
-    //[FormData(Name = "avatarFile")]
-    public HttpPostedFile Avatar { get; set; }
+    [FormData(Name = "avatarFile", Parser = typeof(FileInfoFormDataParser))]
+    public FileInfo Avatar { get; set; }
 
-    //[FormData(Name = "cvFile")]
-    public HttpPostedFile CV { get; set; }
+    [FormData(Name = "cvFile", Parser = typeof(FileInfoFormDataParser))]
+    public FileInfo CV { get; set; }
+  }
+
+  public class FileInfo
+  {
+    public string FileName { get; set; }
+    public byte[] FileData { get; set; }
   }
 }

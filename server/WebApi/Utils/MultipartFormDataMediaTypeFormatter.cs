@@ -60,7 +60,7 @@ namespace WebApi.Utils
       return provider.Contents.FirstOrDefault(c => formDataKey.Equals(Normalize(c.Headers.ContentDisposition.Name), StringComparison.OrdinalIgnoreCase));
     }
 
-    public static string Normalize(string text)
+    public static string Normalize(this string text)
     {
       if (string.IsNullOrWhiteSpace(text))
         return text;

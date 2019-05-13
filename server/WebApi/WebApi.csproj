@@ -134,6 +134,7 @@
     <Compile Include="Utils\IFormDataParser.cs" />
     <Compile Include="Utils\MultipartFormDataAttribute.cs" />
     <Compile Include="Utils\MultipartFormDataMediaTypeFormatter.cs" />
+    <Compile Include="Utils\Parsers\FileInfoFormDataParser.cs" />
     <Compile Include="Utils\Parsers\DateTimeFormDataParser.cs" />
     <Compile Include="Utils\Parsers\StringFormDataParser.cs" />
   </ItemGroup>

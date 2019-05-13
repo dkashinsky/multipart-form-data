@@ -20,7 +20,8 @@ namespace WebApi.Utils
 
     public override bool CanReadType(Type type)
     {
-      return type == typeof(UserModel);
+      var customAttributes = type.GetCustomAttributes(typeof(MultipartFormDataAttribute), false);
+      return customAttributes.Any();
     }
 
     public override bool CanWriteType(Type type)
@@ -30,7 +31,41 @@ namespace WebApi.Utils
 
     public override async Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
     {
-      return new UserModel();
+      if (!content.IsMimeMultipartContent())
+        return null;
+
+      var provider = await content.ReadAsMultipartAsync();
+
+      var instance = Activator.CreateInstance(type);
+      foreach (var propertyInfo in type.GetProperties())
+      {
+        var formDataAttribute = propertyInfo.GetCustomAttributes(typeof(FormDataAttribute), false).FirstOrDefault() as FormDataAttribute;
+        if (formDataAttribute != null)
+        {
+          var parser = formDataAttribute.GetParser(propertyInfo.PropertyType);
+          var formData = provider.GetFormData(formDataAttribute.Name);
+          if (formData != null)
+            propertyInfo.SetValue(instance, await parser.ParseAsync(formData));
+        }
+      }
+
+      return instance;
+    }
+  }
+
+  public static class Extenstions
+  {
+    public static HttpContent GetFormData(this MultipartMemoryStreamProvider provider, string formDataKey)
+    {
+      return provider.Contents.FirstOrDefault(c => formDataKey.Equals(Normalize(c.Headers.ContentDisposition.Name), StringComparison.OrdinalIgnoreCase));
+    }
+
+    public static string Normalize(string text)
+    {
+      if (string.IsNullOrWhiteSpace(text))
+        return text;
+
+      return text.Replace("\"", "");
     }
   }
 }

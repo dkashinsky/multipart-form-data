@@ -130,6 +130,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\FormDataAttribute.cs" />
+    <Compile Include="Utils\IFormDataParser.cs" />
+    <Compile Include="Utils\MultipartFormDataAttribute.cs" />
     <Compile Include="Utils\MultipartFormDataMediaTypeFormatter.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Utils\Parsers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

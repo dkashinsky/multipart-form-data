@@ -31,9 +31,9 @@ export class MultipartFormComponent implements OnInit {
   }
 
   upload() {
-    const uploadUrl = '';
+    const uploadUrl = 'http://localhost:63918/api/upload';
     this.httpClient.post<any>(uploadUrl, toFormData(this.userData)).subscribe(result => {
-      alert('success!');
+      alert(JSON.stringify(result));
     });
   }
 }
